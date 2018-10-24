@@ -42,3 +42,5 @@ var customer = {
 console.log(customer.email);
 var key = 'email';
 console.log(customer[key]);
+
+console.log(JSON.stringify(customer));
