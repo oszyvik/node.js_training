@@ -40,3 +40,15 @@ for (let index = 0; index < user.length; index++) {
 }
 console.log(user.greet());
 console.log(user.ga());
+
+var createUser = function(name, age, skills){
+    name = name || 'Bela';
+    age = age || 40;
+    skills[0] = 'C#';
+    return {name: name, age : age, skills : skills}
+}
+//primitives -> copied, collections -> references
+var skills = ['Java', 'Frontend', 'Lua'];
+var user1 = createUser('CSICSKA', 999, skills);
+console.log(user1);
+console.log(skills);
