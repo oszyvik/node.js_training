@@ -1,3 +1,5 @@
+var EventEmitter = require('events');
+
 //Base function.
 var User = function (props) {
     var options = {};

@@ -4,7 +4,8 @@
   "description": "training",
   "main": "index.js",
   "dependencies": {
-    "eslint": "^5.7.0"
+    "eslint": "^5.7.0",
+    "eventemitter": "^0.3.3"
   },
   "devDependencies": {},
   "scripts": {
