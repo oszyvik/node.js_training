@@ -22,3 +22,9 @@ for(var k in user){
 for(var k in numbers){
     console.log(k, numbers[k]);
 }
+
+//While loop.
+i= 0;
+while(i<10){
+    console.log(i++);
+}
