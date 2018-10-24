@@ -15,3 +15,10 @@ for(i=0; i< keys.length; i++){
 }
 
 
+//For...in loop, traverses the keys not the data
+for(var k in user){
+    console.log(k, user[k]);    
+}
+for(var k in numbers){
+    console.log(k, numbers[k]);
+}
