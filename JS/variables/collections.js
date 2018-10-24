@@ -18,3 +18,27 @@ console.log(names);
 
 console.log(names.slice(1,2));
 console.log(names);
+
+console.log(names.splice(1,2));
+console.log(names);
+
+console.log(names.splice(1,0, 'Joe Filpo'));
+console.log(names);
+
+//Table.
+var users = [
+    [1, 'Piri', 'piri@gmail.com', true],
+    [2, 'Sanyi', 'sanyi@gmail.com', false],
+    [3, 'Bela', 'bela@gmail.com', true],
+];
+console.log(users[2][1]);
+
+//Objects.
+var customer = {
+    'name' : 'Kiss Adam',
+    'email' : 'ka@gmail.com',
+    'active' : true
+}
+console.log(customer.email);
+var key = 'email';
+console.log(customer[key]);
