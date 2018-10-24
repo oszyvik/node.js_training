@@ -57,3 +57,7 @@ try {
 } catch (e) {
     console.log(e.toString());
 }
+
+(function(prop) {
+    console.log(prop);
+})({name: 'Zoli'});

@@ -1,0 +1,26 @@
+{
+  "name": "node.js_training",
+  "version": "1.0.0",
+  "description": "training",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^5.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "none"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oszyvik/node.js_training.git"
+  },
+  "keywords": [
+    "none"
+  ],
+  "author": "oszyvik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oszyvik/node.js_training/issues"
+  },
+  "homepage": "https://github.com/oszyvik/node.js_training#readme"
+}
