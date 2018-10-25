@@ -1,4 +1,5 @@
-var EventEmitter = require('events');
+//const: can not change the collection, but can change the elements of it
+const EventEmitter = require('events');
 
 //Base function.
 var User = function (props) {
@@ -17,7 +18,7 @@ var User = function (props) {
             email: options.email,
             active: options.active
         });
-    }
+    };
 
     this.getProp = function (key) {
         if (!options[key]) {
@@ -25,27 +26,27 @@ var User = function (props) {
         } else {
             return options[key] || '';
         }
-    }
+    };
 
     this.json = function () {
         return toJson();
-    }
+    };
 
     this.setName = function (name) {
         options.name = name;
-    }
+    };
 
     this.setAge = function (age) {
         options.age = age;
-    }
+    };
 
     this.setEmail = function (email) {
         options.email = email;
-    }
+    };
 
     this.setActive = function (active) {
         options.active = active;
-    }
+    };
 
     this.construct();
 };
@@ -60,6 +61,15 @@ try {
     console.log(e.toString());
 }
 
-(function(prop) {
+(function (prop) {
     console.log(prop);
-})({name: 'Zoli'});
+})({ name: 'Zoli' });
+
+//Create event.
+const myEvent = new EventEmitter();
+myEvent.on('whenImTired', function(){
+    console.log('whenImTired event is fired');
+});
+setTimeout(function(){
+    myEvent.emit('whenImTired');
+}, 3000);

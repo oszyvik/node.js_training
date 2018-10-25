@@ -1,23 +1,23 @@
 //If condition.
-if(0 == false){
+if (0 == false) {
     console.log('0 == false');
 }
-if(0 ===false){ //strict equality, value & type are checked together
+if (0 === false) { //strict equality, value & type are checked together
     console.log('0 === false');
-} else{
+} else {
     console.log('0 !== false');
 }
 
-if([]){
+if ([]) {
     console.log('[]');
 }
-if(!''){
+if (!'') {
     console.log('');
 }
 
 //Switch.
 var n = 'hi';
-switch(n){
+switch (n) {
     case 1:
         console.log('n is 1');
         break;
@@ -28,7 +28,7 @@ switch(n){
         console.log('bye');
         break;
     default:
-        console.log("n isn't 4");       
+        console.log('n isn\'t 4');
 }
 
 //Tenary operator.
