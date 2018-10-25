@@ -21,4 +21,3 @@ function formatDay() {
     let day = currentDate.getDay();
     return days[day];
 }
-
