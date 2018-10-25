@@ -67,9 +67,10 @@ try {
 
 //Create event.
 const myEvent = new EventEmitter();
-myEvent.on('whenImTired', function(){
-    console.log('whenImTired event is fired');
+myEvent.on('whenImTired', function(user){
+    console.log('whenImTired event is fired', user);
 });
 setTimeout(function(){
-    myEvent.emit('whenImTired');
+    let user2 = new User({name: 'Zoli'});
+    myEvent.emit('whenImTired', {user: user2});
 }, 3000);
