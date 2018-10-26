@@ -20,7 +20,7 @@ const read = (filePath, encode = 'utf8') => {
  */
 const write = (filePath, encode = 'utf8', data) => {
     return new Promise((resolve, reject) => {
-        fs.writeFile(filePath, encode, data,(err, data) => {
+        fs.writeFile(filePath, encode, data, (err, data) => {
             if (err) {
                 return reject(err);
             }
@@ -31,5 +31,5 @@ const write = (filePath, encode = 'utf8', data) => {
 
 module.exports = {
     'read': read,
-    'write' : write
+    'write': write
 };

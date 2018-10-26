@@ -1,8 +1,8 @@
 //Load modules.
 const http = require('http'),
+    path = require('path'),
     fsHandler = require('./modules/fsHandler'),
-    logModule = require('./modules/logModule'),
-    path = require('path');
+    logModule = require('./modules/logModule');
 
 const server = http.createServer(async (req, res) => {
     let filePath = path.join(__dirname, 'json/users.json');
