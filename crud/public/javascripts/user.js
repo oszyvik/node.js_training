@@ -42,7 +42,7 @@ let tableRow = (user) => {
     button.addEventListener('click', () => {
         postUser(this.user);
     });
-    tr.querySelector('button').user = user;
+    return tr;
 }
     ;
 let fillTable = (json) => {
