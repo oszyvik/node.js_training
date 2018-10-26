@@ -12,4 +12,10 @@ router.get('/api/user', (req, res, next) => {
   res.sendFile(jsonPath);
 });
 
+router.post('/api/user:id', (req, res, next) => {
+  console.log(req.params.id);
+  console.log(req.body);
+  res.send('OK');
+});
+
 module.exports = router;

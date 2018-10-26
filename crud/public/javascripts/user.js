@@ -11,23 +11,44 @@ let fetchUsers = () => {
         }).catch(err => {
             console.log(err);
         });
-}
+};
+
+let postUser = (user) => {
+    fetch('users/api/user/' + user.id, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(user)
+    })
+        .then(response => {
+            return response.json();
+        });
+};
 
 document.querySelector('.fetch-users').addEventListener('click', () => {
     fetchUsers();
 });
 
-let tableRow = (options) => {
-    let output = `<td>${options.id}</td>`;
-    output += `<td>${options.name}</td>`;
-    output += `<td>${options.email}</td>`;
-    return `<tr>${output}</tr>`;
+let tableRow = (user) => {
+    let output = `<td>${user.id}</td>`;
+    output += `<td>${user.name}</td>`;
+    output += `<td>${user.email}</td>`;
+    output += `<button class="send-btn">Send</button>`;
+    let tr = document.createElement('tr');
+    tr.innerHTML = output;
+    let button = tr.querySelector('button');
+    button.user = user;
+    button.addEventListener('click', () => {
+        postUser(this.user);
+    });
+    tr.querySelector('button').user = user;
 }
-;
+    ;
 let fillTable = (json) => {
-    let content = '';
-    for(let k in json){
-        content += tableRow(json[k]);
+    let tbody = document.querySelector('tbody');
+    tbody.innerHTML = '';
+    for (let k in json) {
+        tbody.appendChild(tableRow(json[k]));
     }
-    document.querySelector('tbody').innerHTML = content;
 };
