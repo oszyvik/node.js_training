@@ -1,6 +1,4 @@
 //Get users.
-
-
 let fetchUsers = () => {
     fetch('/users/api/user')
         .then(response => {
@@ -14,10 +12,10 @@ let fetchUsers = () => {
 };
 
 let postUser = (user) => {
-    fetch('users/api/user/' + user.id, {
+    fetch('/users/api/user/' +user.id, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json; charset=utf-8',
+            'Content-Type': 'application/json; charset=utf-8'
         },
         body: JSON.stringify(user)
     })
@@ -34,17 +32,17 @@ let tableRow = (user) => {
     let output = `<td>${user.id}</td>`;
     output += `<td>${user.name}</td>`;
     output += `<td>${user.email}</td>`;
-    output += `<button class="send-btn">Send</button>`;
+    output += `<button class="send-btn btn btn-success">Send</button>`;
     let tr = document.createElement('tr');
     tr.innerHTML = output;
     let button = tr.querySelector('button');
     button.user = user;
     button.addEventListener('click', () => {
-        postUser(this.user);
+        postUser(user);
     });
     return tr;
-}
-    ;
+};
+
 let fillTable = (json) => {
     let tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
