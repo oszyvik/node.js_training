@@ -20,7 +20,11 @@ let postUser = (user) => {
         body: JSON.stringify(user)
     })
         .then(response => {
+            console.log(response.status);
             return response.json();
+        })
+        .then(json => {
+            console.log(json);
         });
 };
 
