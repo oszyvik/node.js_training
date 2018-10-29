@@ -1,5 +1,5 @@
-//Get users.
-let fetchUsers = () => {
+// Get users.
+var fetchUsers = function () {
     fetch('/users/api/user')
         .then(response => {
             return response.json();
@@ -7,89 +7,112 @@ let fetchUsers = () => {
             console.log(json);
             fillTable(json);
         }).catch(err => {
-            console.log(err);
+            console.error(err);
         });
 };
 
-//Send user data to the server
-let postUser = (user) => {
-    fetch('/users/api/user/' +user.id, {
-        method: 'POST',
+// Send user data to the server.
+var postUser = function (user) {
+    fetch('/users/api/user/' + user.id, {
+        method: "POST",
         headers: {
-            'Content-Type': 'application/json; charset=utf-8'
+            "Content-Type": "application/json; charset=utf-8"
         },
         body: JSON.stringify(user)
-    })
-        .then(response => {
-            console.log(response.status);
-            return response.json();
-        })
-        .then(json => {
-            console.log(json);
-        });
+    }).then(response => {
+        return response.json();
+    }).then(json => {
+        console.log(json);
+    });
 };
 
-//Send user data to the server
-let putUser = (user) => {
-    fetch('users/api/user/' + user.id, {
-        method: 'PUT',
+var putUser = function (user) {
+    fetch('/users/api/user/' + user.id, {
+        method: "PUT",
         headers: {
-            'Content-Type': 'application/json; charset=utf-8',
+            "Content-Type": "application/json; charset=utf-8"
         },
         body: JSON.stringify(user)
-    })
-        .then(response => {
-            return response.json();
-        }).then(json => {
-            console.log(json);
-           // fillTable(json);
-        }).catch(err => {
-            console.log(err);
-        });
+    }).then(response => {
+        return response.json();
+    });
 };
 
-//Send user data to the server
-let deleteUser = (user) => {
-    fetch('users/api/user/' + user.id, {
-        method: 'DELETE'
-    })
-        .then(response => {
-            return response.json();
-        });
+var deleteUser = function (user) {
+    fetch('/users/api/user/' + user.id, {
+        method: "DELETE"
+    }).then(response => {
+        return response.json();
+    }).then(json => {
+        console.log(json);
+        fetchUsers();
+    });
 };
 
-document.querySelector('.fetch-users').addEventListener('click', () => {
+document.querySelector('.fetch-users').addEventListener('click', function () {
     fetchUsers();
 });
 
-let tableRow = (user) => {
-    let output = `<td>${user.id}</td>`;
-    output += `<td>${user.name}</td>`;
-    output += `<td>${user.email}</td>`;
-    output += `<button class="send-btn btn btn-success">Send</button> 
-    <button class="delete-btn btn btn-danger">Delete</button>`;
-    let tr = document.createElement('tr');
-    tr.innerHTML = output;
-    let buttonSend = tr.querySelector('.send-btn');
-    buttonSend.user = user;
-    buttonSend.addEventListener('click', () => {
-        postUser(user);
-    });
-    let buttonDelete = tr.querySelector('.delete-btn');
-    buttonDelete.user = user;
-    buttonDelete.addEventListener('click', () => {
-        deleteUser(user);
-    });
+// Create table cell.
+var tableCell = function (user, key, disabled) {
+    var input = document.createElement('input');
+    var td = document.createElement('td');
+
+    input.type = 'text';
+    input.className = 'form-control';
+    input.key = key;
+    input.user = user;
+    input.value = user[key];
+    if (disabled) {
+        input.setAttribute('disabled', 'disabled');
+    }
+    input.onchange = function () {
+        user[key] = this.value;
+    };
+
+    td.appendChild(input);
+    return td;
+};
+
+// Create a row for the table.
+var tableRow = function (user) {
+    var tr = document.createElement('tr');
+    tr.appendChild(tableCell(user, 'id', true));
+    tr.appendChild(tableCell(user, 'name', false));
+    tr.appendChild(tableCell(user, 'email', false));
 
 
+    // Create update button in tr element.
+    var td = document.createElement('td');
+    tr.appendChild(td);
+    let group = document.createElement('div');
+    td.appendChild(group);
+    group.className = 'btn-group';
+    var button = document.createElement('button');
+    group.appendChild(button);
+    button.user = user;
+    button.innerHTML = 'Update';
+    button.className = 'btn btn-info';
+    button.addEventListener('click', function () {
+        postUser(this.user);
+    });
     
+    var dButton = document.createElement('button');
+    group.appendChild(dButton);
+    dButton.user = user;
+    dButton.innerHTML = 'Delete';
+    dButton.className = 'btn btn-danger';
+    dButton.addEventListener('click', function () {
+        deleteUser(this.user);
+    });
+
     return tr;
 };
 
-let fillTable = (json) => {
-    let tbody = document.querySelector('tbody');
+var fillTable = function (json) {
+    var tbody = document.querySelector('tbody');
     tbody.innerHTML = '';
-    for (let k in json) {
+    for (var k in json) {
         tbody.appendChild(tableRow(json[k]));
     }
 };
