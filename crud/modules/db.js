@@ -56,10 +56,19 @@ class DB {
             } catch (e) {
                 //TODO
             }
+
+            let maxID = 0;
+            for (let k in this.fileContent) {
+                if (this.fileContent[k].id > maxID) {
+                    maxID = this.fileContent[k].id;
+                }
+            }
+            maxID++;
+            entity.id = maxID;
             try {
                 this.fileContent.push(entity);
                 this.save();
-                resolve({created: 1});
+                resolve({ created: 1 });
             } catch (e) {
                 reject(e);
             }

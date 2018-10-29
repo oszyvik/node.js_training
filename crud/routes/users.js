@@ -22,7 +22,7 @@ router.get('/api/user', async (req, res, next) => {
 
 router.post('/api/user/:id', async (req, res, next) => {
   try {
-    let updated = await usersDB.create(req.body);
+    let updated = await usersDB.update(req.body);
     res.json(updated);
   } catch (e) {
     res.json({ error: e });
@@ -38,9 +38,9 @@ router.delete('/api/user/:id', async (req, res, next) => {
   }
 });
 
-router.put('/api/user/:id', async (req, res, next) => {
+router.put('/api/user', async (req, res, next) => {
   try {
-    let created = await usersDB.create(req.params.id);
+    let created = await usersDB.create(req.body);
     res.json(created);
   } catch (e) {
     res.json({ error: e });
